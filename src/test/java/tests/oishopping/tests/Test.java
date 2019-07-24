@@ -8,7 +8,7 @@ public class Test extends BaseTest{
 	ShoppingList_Helper helper = new ShoppingList_Helper();
 	
 	
-    public void validateDeletionOfElementSfterAddingItemToList(String arg) throws Throwable {
+public void validateDeletionOfElementSfterAddingItemToList(String arg) throws Throwable {
 	 	
 	    	helper.createNewList(arg);
 	    	helper.addItemsToList(arg);
