@@ -26,27 +26,34 @@ public class Operations_Android {
 	MobileElement melement = new AndroidElement();
 
 	public MobileElement findElement(String XPathString) {
-
-		melement = androidDriver.findElementByAndroidUIAutomator(XPathString);
-
+		try {
+			melement = androidDriver.findElementByAndroidUIAutomator(XPathString);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return melement;
 	}
 
 	public boolean findElement(String XPathString, LocatorType locateBy) {
-		Boolean found = true;
-		switch (locateBy) {
-		case ID:
-			element = androidDriver.findElement(By.id(XPathString));
-		case NAME:
-			element = androidDriver.findElement(By.name(XPathString));
-		case XPATH:
-			element = androidDriver.findElement(By.xpath(XPathString));
-		case TEXT:
-			element = androidDriver.findElement(By.id(XPathString));
-		case XPATHGEN:
-			element= androidDriver.findElement(By.xpath("//android.widget.TextView"+"["+"@text="+XPathString+"]"));
-		default:
-			break;			
+		boolean found = true;
+		try {
+			switch (locateBy) {
+			case ID:
+				element = androidDriver.findElement(By.id(XPathString));
+			case NAME:
+				element = androidDriver.findElement(By.name(XPathString));
+			case XPATH:
+				element = androidDriver.findElement(By.xpath(XPathString));
+			case TEXT:
+				element = androidDriver.findElement(By.id(XPathString));
+			case XPATHGEN:
+				element = androidDriver
+						.findElement(By.xpath("//android.widget.TextView" + "[" + "@text=" + XPathString + "]"));
+			default:
+				break;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		if (element == null) {
 			found = false;
@@ -55,43 +62,74 @@ public class Operations_Android {
 	}
 
 	public void Click(String XPathString, LocatorType type) {
-		findElement(XPathString,type);		
-			element.click();		
+		try {
+			findElement(XPathString, type);
+			element.click();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	protected void hideKeyboard() {
-		androidDriver.navigate().back();
+		try {
+			androidDriver.navigate().back();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	public List<MobileElement> findElements(String XPathString) {
 
-		List<MobileElement> elements = androidDriver.findElementsByAndroidUIAutomator(XPathString);
+		List<MobileElement> elements = null;
+		try {
+			elements = androidDriver.findElementsByAndroidUIAutomator(XPathString);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return elements;
 	}
 
 	public boolean typeText(String UIAxapthValue, String text) {
-		element = findElement(UIAxapthValue);
-		if (!(text == null)) {
-			element.sendKeys(text);
+		try {
+			element = findElement(UIAxapthValue);
+			if (!(text == null)) {
+				element.sendKeys(text);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
 		return false;
 	}
 
 	public String getTextFromAttribute(String UIAxapthValue, String AttributeValue) {
 		String value = null;
-		element = findElement(UIAxapthValue);
-		if (!(AttributeValue == null)) {			
-			value = element.getAttribute(AttributeValue);
+		try {
+			element = findElement(UIAxapthValue);
+			if (!(AttributeValue == null)) {
+				value = element.getAttribute(AttributeValue);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
 		return value;
 	}
 
 	public ArrayList<String> getTextFromAttributes(String UIAxapthValue, String text) {
-		List<MobileElement> element = findElements(UIAxapthValue);
+		List<MobileElement> element = null;
 		ArrayList<String> attributeList = new ArrayList<String>();
-		for (MobileElement a : element) {
-			attributeList.add(a.getAttribute(text));
+		try {
+			element = findElements(UIAxapthValue);
+			for (MobileElement a : element) {
+				attributeList.add(a.getAttribute(text));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
 		return attributeList;
 
 	}

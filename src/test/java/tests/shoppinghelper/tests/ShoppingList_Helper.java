@@ -21,9 +21,10 @@ public class ShoppingList_Helper {
 	MobileElement element = new AndroidElement();
 	
 	public void createNewList(String value) {
-		String listName= getlistName(value);
-		if (opj.findElement(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH)) {
-			System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>");
+		String listName = getlistName(value);
+		try {
+			if (opj.findElement(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH)) {
+				System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>");
 				opj.Click(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH);
 				if (opj.findElement(OIShopping_Constants.NEW_LIST_RID, LocatorType.ID)) {
 					opj.Click(OIShopping_Constants.NEW_LIST_RID, LocatorType.ID);
@@ -34,111 +35,129 @@ public class ShoppingList_Helper {
 						element.clear();
 						element.sendKeys(listName);
 						opj.Click(OIShopping_Constants.OKBUTTON_TXT, LocatorType.XPATH);
-						System.out.println("<<<<<<<<<<<<<List Name Created "+listName.toString());
+						System.out.println("<<<<<<<<<<<<<List Name Created " + listName.toString());
 					}
 				} else {
 					System.out.println("<<<<<<<<<<<<New List Option is missing in Menu>>>>>>>>>>");
 				}
 			}
 
-		else {
-			System.out.println("<<<<<<<<<<<<<<<<<<<Navigation Drawer is not Displayed>>>>>>>>>>>>");
+			else {
+				System.out.println("<<<<<<<<<<<<<<<<<<<Navigation Drawer is not Displayed>>>>>>>>>>>>");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
+	
 
 	public void addItemsToList(String arg) {
-		 
-		 ArrayList<String> listItems = getItemslistName(arg);
-		 String listName =listItems.get(0);
-		if (opj.findElement(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH)) {
-			System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>>");
-			opj.Click(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH);
-			if (opj.findElement(listName, LocatorType.XPATHGEN)) {
-				opj.Click(listName, LocatorType.XPATHGEN);
-				System.out.println("<<<<<<<<<<<Clicked On List " + listName);
-			} else {
-				System.out.println("<<<<<<<<<<<<New List Option is missing in Menu>>>>>>>>>>");
-			}
-			for (String list : listItems) {
-				if (opj.findElement(OIShopping_Constants.INPUTTEXT_RID, LocatorType.ID)) {
-					opj.findElement(OIShopping_Constants.INPUTTEXT_RID).sendKeys(list);
-					opj.Click(OIShopping_Constants.ADD_BTN, LocatorType.ID);
-					opj.hideKeyboard();
+		ArrayList<String> listItems = getItemslistName(arg);
+		String listName = listItems.get(0);
+		try {
+			if (opj.findElement(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH)) {
+				System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>>");
+				opj.Click(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH);
+				if (opj.findElement(listName, LocatorType.XPATHGEN)) {
+					opj.Click(listName, LocatorType.XPATHGEN);
+					System.out.println("<<<<<<<<<<<Clicked On List " + listName);
+				} else {
+					System.out.println("<<<<<<<<<<<<New List Option is missing in Menu>>>>>>>>>>");
 				}
+				for (String list : listItems) {
+					if (opj.findElement(OIShopping_Constants.INPUTTEXT_RID, LocatorType.ID)) {
+						opj.findElement(OIShopping_Constants.INPUTTEXT_RID).sendKeys(list);
+						opj.Click(OIShopping_Constants.ADD_BTN, LocatorType.ID);
+						opj.hideKeyboard();
+					}
+				}
+
+			} else {
+				System.out.println("<<<<<<<<<<<<<<<<<<<Navigation Drawer is not Displayed>>>>>>>>>>>>");
 			}
 
-		} else {
-			System.out.println("<<<<<<<<<<<<<<<<<<<Navigation Drawer is not Displayed>>>>>>>>>>>>");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-
 	}
 
 	public void deleteItemsFromList(String value) {
-		String listName= getlistName(value);
-		if (opj.findElement(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH)) {
-			System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>>");
-			opj.Click(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH);
-			if (opj.findElement(listName, LocatorType.XPATHGEN)) {
-				opj.Click(listName, LocatorType.XPATHGEN);
-				System.out.println("<<<<<<<<<<<Clicked On List " + listName);
-			} else {
-				System.out.println("<<<<<<<<<<<<Given " + listName + "is missing in Menu");
-			}
-			List<MobileElement> elements = opj.findElements(OIShopping_Constants.ITEM_LIST);
-			elements.size();
-			System.out.println("<<<<<<<<<<<<<<User is displayed with : " + element.getSize() + "Options in iTem List");
-			
-			    	opj.Click(OIShopping_Constants.CHECKBOX_ITEMLIST,LocatorType.XPATH);
-					if (opj.findElement(OIShopping_Constants.SETTINGS_MENU, LocatorType.ID)) {
-						opj.Click(OIShopping_Constants.SETTINGS_MENU, LocatorType.ID);
-						opj.findElement(OIShopping_Constants.DELETE_LIST, LocatorType.TEXT);
-						if (opj.findElement(OIShopping_Constants.DELETE_LIST, LocatorType.TEXT)) {
-							System.out.println("<<<<<<<<<<<<<Alert Pop-up is displayed with Cancel and OK Button");
-							opj.Click(OIShopping_Constants.OKBUTTON_TXT, LocatorType.TEXT);
-							System.out.println("<<<<<<<<<<<<<Item Deleted from the List>>>>>>>>>>");
-						} else {
-							System.out.println("<<<<<<<<<<<<<Alert Pop-up is not displayed to delete the item");						
+		String listName = getlistName(value);
+		try {
+			if (opj.findElement(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH)) {
+				System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>>");
+				opj.Click(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH);
+				if (opj.findElement(listName, LocatorType.XPATHGEN)) {
+					opj.Click(listName, LocatorType.XPATHGEN);
+					System.out.println("<<<<<<<<<<<Clicked On List " + listName);
+				} else {
+					System.out.println("<<<<<<<<<<<<Given " + listName + "is missing in Menu");
 				}
+				List<MobileElement> elements = opj.findElements(OIShopping_Constants.ITEM_LIST);
+				elements.size();
+				System.out.println(
+						"<<<<<<<<<<<<<<User is displayed with : " + element.getSize() + "Options in iTem List");
+
+				opj.Click(OIShopping_Constants.CHECKBOX_ITEMLIST, LocatorType.XPATH);
+				if (opj.findElement(OIShopping_Constants.SETTINGS_MENU, LocatorType.ID)) {
+					opj.Click(OIShopping_Constants.SETTINGS_MENU, LocatorType.ID);
+					opj.findElement(OIShopping_Constants.DELETE_LIST, LocatorType.TEXT);
+					if (opj.findElement(OIShopping_Constants.DELETE_LIST, LocatorType.TEXT)) {
+						System.out.println("<<<<<<<<<<<<<Alert Pop-up is displayed with Cancel and OK Button");
+						opj.Click(OIShopping_Constants.OKBUTTON_TXT, LocatorType.TEXT);
+						System.out.println("<<<<<<<<<<<<<Item Deleted from the List>>>>>>>>>>");
+					} else {
+						System.out.println("<<<<<<<<<<<<<Alert Pop-up is not displayed to delete the item");
+					}
+				}
+			} else {
+				System.out.println("<<<<<<<<<<<<<<<<<<<Navigation Drawer is not Displayed>>>>>>>>>>>>");
 			}
-		} else {
-			System.out.println("<<<<<<<<<<<<<<<<<<<Navigation Drawer is not Displayed>>>>>>>>>>>>");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}
 
 	public void sortListValues(String listName) {
-		
+
 		ArrayList<String> itemList_Vegetable = new ArrayList<>(Arrays.asList("Cabbage", "Carrot", "Potato", "Tomato"));
+		try {
+			if (opj.findElement(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.TEXT)) {
+				System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>>");
+				opj.Click(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.TEXT);
+				if (opj.findElement(listName, LocatorType.XPATHGEN)) {
+					System.out.println("<<<<<<<<<<<Clicked On List " + listName);
+				} else {
+					System.out.println("<<<<<<<<<<<<Given " + listName + "is missing in Menu");
+				}
+				List<MobileElement> elements = opj.findElements(OIShopping_Constants.ITEM_LIST);
+				elements.size();
+				System.out.println(
+						"<<<<<<<<<<<<<<User is displayed with : " + element.getSize() + "Options in iTem List");
 
-		if (opj.findElement(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.TEXT)) {
-			System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>>");
-			opj.Click(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.TEXT);
-			if (opj.findElement(listName, LocatorType.XPATHGEN)) {
-				System.out.println("<<<<<<<<<<<Clicked On List " + listName);
+				ArrayList<String> iTemValuesDisplayed = opj.getTextFromAttributes(OIShopping_Constants.ITEM_LIST,
+						AttributeValue.TEXT.toString());
+				Boolean isMatching = StringListMatch(itemList_Vegetable, iTemValuesDisplayed);
+				if (isMatching) {
+					System.out.println(
+							"<<<<<<<<<<<<<<<<<<<<Values displayed in the Itemlist is not sorted in proper order ,"
+									+ " Actual Value Displayed" + getItemsFromArrayList(iTemValuesDisplayed)
+									+ "Sorted Items" + getItemsFromArrayList(itemList_Vegetable));
+				} else {
+					System.out
+							.println("<<<<<<<<<<<<<<<<<<<<Values displayed in the Itemlist is Sorted in proper order , "
+									+ "Actual Value Displayed" + getItemsFromArrayList(iTemValuesDisplayed)
+									+ "Sorted Items" + getItemsFromArrayList(itemList_Vegetable));
+				}
 			} else {
-				System.out.println("<<<<<<<<<<<<Given " + listName + "is missing in Menu");
+				System.out.println("<<<<<<<<<<<<<<<<<<<Navigation Drawer is not Displayed>>>>>>>>>>>>");
 			}
-			List<MobileElement> elements = opj.findElements(OIShopping_Constants.ITEM_LIST);
-			elements.size();
-			System.out.println("<<<<<<<<<<<<<<User is displayed with : " + element.getSize() + "Options in iTem List");
 
-			ArrayList<String> iTemValuesDisplayed = opj.getTextFromAttributes(OIShopping_Constants.ITEM_LIST,
-					AttributeValue.TEXT.toString());
-			Boolean isMatching = StringListMatch(itemList_Vegetable, iTemValuesDisplayed);
-			if(isMatching) {
-				System.out.println("<<<<<<<<<<<<<<<<<<<<Values displayed in the Itemlist is not sorted in proper order ,"
-						+ " Actual Value Displayed"+getItemsFromArrayList(iTemValuesDisplayed)+
-						"Sorted Items"+getItemsFromArrayList(itemList_Vegetable));
-			}
-			else {
-				System.out.println("<<<<<<<<<<<<<<<<<<<<Values displayed in the Itemlist is Sorted in proper order , "
-						+ "Actual Value Displayed"+getItemsFromArrayList(iTemValuesDisplayed)+
-						"Sorted Items"+getItemsFromArrayList(itemList_Vegetable));	
-			}
-		} else {
-			System.out.println("<<<<<<<<<<<<<<<<<<<Navigation Drawer is not Displayed>>>>>>>>>>>>");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
+
 		return;
 
 	}
