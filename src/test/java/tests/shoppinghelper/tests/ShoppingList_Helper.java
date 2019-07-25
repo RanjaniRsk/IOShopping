@@ -98,11 +98,8 @@ public class ShoppingList_Helper {
 							opj.Click(OIShopping_Constants.OKBUTTON_TXT, LocatorType.TEXT);
 							System.out.println("<<<<<<<<<<<<<Item Deleted from the List>>>>>>>>>>");
 						} else {
-							System.out.println("<<<<<<<<<<<<<Alert Pop-up is not displayed to delete the item");
-						
-
+							System.out.println("<<<<<<<<<<<<<Alert Pop-up is not displayed to delete the item");						
 				}
-
 			}
 		} else {
 			System.out.println("<<<<<<<<<<<<<<<<<<<Navigation Drawer is not Displayed>>>>>>>>>>>>");
@@ -110,7 +107,7 @@ public class ShoppingList_Helper {
 
 	}
 
-	public boolean sortListValues(String listName) {
+	public void sortListValues(String listName) {
 		
 		ArrayList<String> itemList_Vegetable = new ArrayList<>(Arrays.asList("Cabbage", "Carrot", "Potato", "Tomato"));
 
@@ -143,8 +140,7 @@ public class ShoppingList_Helper {
 			System.out.println("<<<<<<<<<<<<<<<<<<<Navigation Drawer is not Displayed>>>>>>>>>>>>");
 		}
 		
-
-		return false;
+		return;
 
 	}
 
@@ -153,14 +149,12 @@ public class ShoppingList_Helper {
 		String result="";
 		for(String temp : value)
 			result += temp+",";
-		result = result.substring(0,result.lastIndexOf(","));
-		
-		return null;
-		
+		result = result.substring(0,result.lastIndexOf(","));		
+		return null;		
 	}
 	
 	public boolean StringListMatch(ArrayList<String> firstValue, ArrayList<String> secondValue) {
-
+		
 		for (int i = 0; i < firstValue.size(); i++) {
 			if (firstValue.get(i).equals(secondValue.get(i))) {
 				System.out.println(
@@ -172,11 +166,9 @@ public class ShoppingList_Helper {
 			}
 		}
 		return true;
-
 	}
 
 	public boolean listWithStringComparison(ArrayList<String> array, String flow) {
-
 		int i = 0, count = 0;
 		boolean value = false;
 		ArrayList<String> array1 = new ArrayList<String>();
@@ -184,22 +176,16 @@ public class ShoppingList_Helper {
 			for (String d : array) {
 				array1.add(d);
 			}
-
 			Collections.sort(array1);
 			switch (flow) {
-
 			case "Ascending":
-
 				for (String d : array) {
 					if (d.equals(array1.get(i))) {
 						count++;
 					}
-					i++;
-				}
+					i++;				}
 				break;
-
 			case "Descending":
-
 				for (int k = array.size() - 1; k >= 0; k--) {
 					if (array.get(1).equals(array1.get(k))) {
 						count++;
@@ -213,38 +199,29 @@ public class ShoppingList_Helper {
 			} else {
 				value = false;
 			}
-
 		}
-
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return value;
-
 	}
 	
 	public String getlistName(String value) {
-		
-		String[] val = value.split("list",1);
-		value= val[2].trim();		
-		
-		return value;
-		
+		String[] val = value.split("list",2);
+		value= val[1].trim();				
+		return value;		
 	}
 	
 public ArrayList<String> getItemslistName(String value) {
 		
-	ArrayList<String> list = new ArrayList<>();
-		
-		String[] listname =	value.split("to List", 1);
-		list.add(listname[1]);
-		String[] sample = listname[0].split("items", 1);
-		String[] itemList =sample[1].split(",", 2);
-		list.add(itemList[0]);
-		list.add(itemList[1]);
-		list.add(itemList[2]);
-		
+	    ArrayList<String> list = new ArrayList<>();	
+		String[] listname =	value.split("to List", 2);
+		list.add(listname[1].trim());
+		String[] sample = listname[0].split("items", 2);
+		String[] itemList =sample[1].split(",", 3);
+		list.add(itemList[0].trim());
+		list.add(itemList[1].trim());
+		list.add(itemList[2].trim());		
 		return list;
 		
 	}
