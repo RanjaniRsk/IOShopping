@@ -12,25 +12,24 @@ public class OIShoppingSteps  {
  ShoppingList_Helper helper = new ShoppingList_Helper();
     
    
-    @Given("^Create new list \"([^\"]*)\"$")
+    @Given("^Create new lists \"([^\"]*)\"$")
     public void createNewList(String arg) throws Throwable {
  	
     	helper.createNewList(arg);   	 
     }
-
     @And("^Add items \"([^\"]*)\"$")		
     public void addItemsToList(String arg) throws Throwable {
         
     	helper.addItemsToList(arg);
     }
     
-    @When("^Delete an Item from list \"([^\"]*)\"$")
+    @When("^Delete an Item from \"([^\"]*)\"$")
     public void deleteItemsFromList(String arg) throws Throwable {
     	 
     helper.deleteItemsFromList(arg);
        }
 
-    @When("^When Validate sorting of Items from \"([^\"]*)\"$")
+    @When("^Validate sorting of Items from list \"([^\"]*)\"$")
     public void validateSortingOfListElements(String arg0) throws Throwable {
     	
       helper.sortListValues(arg0);

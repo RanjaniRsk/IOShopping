@@ -6,7 +6,7 @@ Feature: Add,Delete and Sort functionality of Shopping List
     And	Create new list "FOOD"
     And	Add items "Apple,Orange,Grapes" to List "FRUITS"
     And	Add items "Bread,Egg,Milk" to List "Food"
-    When Delete an Item from list "Fruits"
+    When Delete an Item from list "FRUITS"
     
     
   Scenario: Sort Validation of List Items
