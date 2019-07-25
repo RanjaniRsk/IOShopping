@@ -12,7 +12,6 @@ public class PropReader {
 	}
 
 	public void getPropertyList(String propFileName) {
-
 		try {
 			prop.load(PropReader.class.getClassLoader().getResourceAsStream(propFileName));
 		} catch (IOException e) {

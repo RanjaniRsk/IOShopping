@@ -28,6 +28,7 @@ public class BaseTest {
     protected ShoppingList_Helper shoppingHelper =null;
     Operations_Android opj = new Operations_Android(driver);
 
+    
     @BeforeMethod
     public void setup (String deviceName, String platformVersion) throws IOException {
         System.out.println("TestNG Before");
