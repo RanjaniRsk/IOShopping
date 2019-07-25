@@ -40,6 +40,6 @@ public class OIShoppingSteps  {
     @After
     public synchronized void teardown () {
        // teardown();
-        System.out.println("teardown'a girdi!");
+        System.out.println("teardown'!");
     }
 }
