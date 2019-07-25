@@ -19,11 +19,11 @@ public class ShoppingList_Helper {
 	Operations_Android opj = new Operations_Android(driver);
 	protected ShoppingList_Helper shoppingHelper = null;
 	MobileElement element = new AndroidElement();
-
+	
 	public void createNewList(String value) {
 		String listName= getlistName(value);
 		if (opj.findElement(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH)) {
-			System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>>");
+			System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>");
 				opj.Click(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH);
 				if (opj.findElement(OIShopping_Constants.NEW_LIST_RID, LocatorType.ID)) {
 					opj.Click(OIShopping_Constants.NEW_LIST_RID, LocatorType.ID);
