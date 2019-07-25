@@ -44,7 +44,6 @@ public class ShoppingList_Helper {
 		else {
 			System.out.println("<<<<<<<<<<<<<<<<<<<Navigation Drawer is not Displayed>>>>>>>>>>>>");
 		}
-
 	}
 
 	public void addItemsToList(String arg) {
