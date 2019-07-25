@@ -1,79 +1,47 @@
 package utilities;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
 public class PropReader {
 
-    private static PropReader instance;
-    private static final Object lock = new Object();
+	Properties prop;
 
-    private static String deviceName;
-    private static String udid;
-    private static String platformName;
-    private static String platformVersion;
-    private static String appPackage;
-    private static String appActivity;
-    private static String noReset;
-    private static String URL;
+	public PropReader() {
+		prop = new Properties();
+	}
 
-    private PropReader() {
-    }
+	public void getPropertyList(String propFileName) {
 
-    public static PropReader GetInstance() {
-        if (instance == null) {
-            synchronized (lock) {
-                if (instance == null) {
-                    instance = new PropReader();
-                    instance.LoadDeviceData();
-                }
-            }
-        }
-        return instance;
-    }
+		try {
+			prop.load(PropReader.class.getClassLoader().getResourceAsStream(propFileName));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return;
 
-    private void LoadDeviceData() {
-        Properties prop = new Properties();
-        try {
-            prop.load(new FileInputStream("device-configuration.properties"));
-        } catch (IOException e) {
-            System.out.println("Device Configuration properties file cannot be found");
-        }
-        deviceName = prop.getProperty("DeviceName");
-        udid = prop.getProperty("UDID");
-        platformName = prop.getProperty("PlatformName");
-        platformVersion = prop.getProperty("PlatformVersion");
-        appPackage = prop.getProperty("AppPackage");
-        appActivity = prop.getProperty("AppActivity");
-        noReset = prop.getProperty("NoReset");
-        URL = prop.getProperty("URL");
-    }
+	}
 
-    //Getters (Get Methods)
-    public static String getDeviceName(){
-        return deviceName;
-    }
-    public static String getUDID(){
-        return udid;
-    }
-    public static String getPlatformName(){
-        return platformName;
-    }
-    public static String getPlatformVersion(){
-        return platformVersion;
-    }
-    public static String getAppPackage(){
-        return appPackage;
-    }
-    public static String getAppActivity(){
-        return appActivity;
-    }
-    public static String getNoReset(){
-        return noReset;
-    }
-    public static String getURL(){
-        return URL;
-    }
+	public String getProperty(String propFileName, String propKey) {
+		String propValue = null;
+		try {
+			prop.load(PropReader.class.getClassLoader().getResourceAsStream(propFileName));
+			propValue = prop.getProperty(propKey);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return propValue;
+
+	}
+
+	public String getProperty(String propKey) {
+		String propValue = null;
+
+		if (prop != null) {
+			propValue = prop.getProperty(propKey);
+		}
+		return propValue;
+
+	}
 
 }

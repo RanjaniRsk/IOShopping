@@ -7,7 +7,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
 import tests.shoppinghelper.tests.ShoppingList_Helper;
 import tests.shoppinghelper.tests.OIShopping_Constants;
 import tests.shoppinghelper.tests.OIShopping_Constants.LocatorType;
@@ -22,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
     public WebDriverWait wait;
-
+    PropReader prop = new PropReader();
 
 	public static AndroidDriver<MobileElement> driver;
     
@@ -30,21 +29,20 @@ public class BaseTest {
     Operations_Android opj = new Operations_Android(driver);
 
     @BeforeMethod
-    @Parameters({"deviceName", "platformVersion"})
     public void setup (String deviceName, String platformVersion) throws IOException {
         System.out.println("TestNG Before");
-
+        prop.getPropertyList(OIShopping_Constants.CONFIGFILE_NAME);
         //Unlock the device if it is locked.
         final Runtime rt = Runtime.getRuntime();
         rt.exec("adb shell input keyevent 224");
         File app = new File("E:\\APK\\OI Shopping List_org.openintents.shopping.apk");
         DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("deviceName", deviceName);
-        caps.setCapability("platformVersion", platformVersion);
-        caps.setCapability("platformName", PropReader.getPlatformName());;
-		caps.setCapability("udid", PropReader.getUDID());
+        caps.setCapability("deviceName",  prop.getProperty("DeviceName"));
+        caps.setCapability("platformVersion", prop.getProperty("PlatformVersion"));
+        caps.setCapability("platformName", prop.getProperty("PlatformName"));;
+		caps.setCapability("udid", prop.getProperty("UDID"));
         caps.setCapability("app", app.getAbsolutePath());
-        caps.setCapability("noReset",PropReader.getNoReset());
+        caps.setCapability("noReset",prop.getProperty("NoReset"));
 
     	driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), caps);
         
