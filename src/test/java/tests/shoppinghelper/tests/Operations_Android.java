@@ -34,7 +34,6 @@ public class Operations_Android {
 
 	public boolean findElement(String XPathString, LocatorType locateBy) {
 		Boolean found = true;
-
 		switch (locateBy) {
 		case ID:
 			element = androidDriver.findElement(By.id(XPathString));
@@ -47,23 +46,17 @@ public class Operations_Android {
 		case XPATHGEN:
 			element= androidDriver.findElement(By.xpath("//android.widget.TextView"+"["+"@text="+XPathString+"]"));
 		default:
-			break;
-			
+			break;			
 		}
 		if (element == null) {
 			found = false;
 		}
-
 		return found;
-
 	}
 
 	public void Click(String XPathString, LocatorType type) {
-
-		findElement(XPathString,type);
-		
-			element.click();
-		
+		findElement(XPathString,type);		
+			element.click();		
 	}
 
 	protected void hideKeyboard() {
@@ -78,21 +71,16 @@ public class Operations_Android {
 
 	public boolean typeText(String UIAxapthValue, String text) {
 		element = findElement(UIAxapthValue);
-
 		if (!(text == null)) {
 			element.sendKeys(text);
 		}
-
 		return false;
-
 	}
 
 	public String getTextFromAttribute(String UIAxapthValue, String AttributeValue) {
 		String value = null;
 		element = findElement(UIAxapthValue);
-
-		if (!(AttributeValue == null)) {
-
+		if (!(AttributeValue == null)) {			
 			value = element.getAttribute(AttributeValue);
 		}
 		return value;
