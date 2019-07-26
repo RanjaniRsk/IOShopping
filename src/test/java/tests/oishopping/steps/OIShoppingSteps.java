@@ -1,7 +1,6 @@
 package tests.oishopping.steps;
 
 import cucumber.api.java.After;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -17,7 +16,7 @@ public class OIShoppingSteps  {
  	
     	helper.createNewList(arg);   	 
     }
-    @When("^Add items \"([^\"]*)\" to list \"([^\"]*)\" $")		
+    @When("^Add items \"([^\"]*)\" to List \"([^\"]*)\"$")		
     public void addItemsToList(String items, String list) throws Throwable {
         
     	helper.addItemsToList(items,list);
@@ -29,7 +28,7 @@ public class OIShoppingSteps  {
     helper.deleteItemsFromList(arg);
        }
 
-    @When("^sorting of Items from lists \"([^\"]*)\"$")
+    @When("^sorting of Items from list \"([^\"]*)\"$")
     public void validateSortingOfListElements(String arg0) throws Throwable {
     	
       helper.sortListValues(arg0);
