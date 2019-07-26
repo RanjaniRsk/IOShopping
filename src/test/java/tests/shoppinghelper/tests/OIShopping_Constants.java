@@ -18,7 +18,7 @@ public class OIShopping_Constants {
 	
 	// Add item
 	public static final String ADD_BTN = "//android.widget.Button[@text='Add']";
-	public static final String ITEM_LIST = "UISelector().Xpath(\"andorid.widget.ListView[@text='list_items']/child::android.widget.LinearLayout\")/";
+	public static final String ITEM_LIST = "//*[@resource-id='org.openintents.shopping:id/name']";
 	public static final String CHECKBOX_ITEMLIST = "UISelector().Xpath(\"andorid.widget.CheckBox[@resource-id='org.openintents.shopping:id/check'][1]\")/";
 	
 	// Settings Menu

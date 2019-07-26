@@ -121,7 +121,6 @@ public class ShoppingList_Helper extends OIShopping_Constants{
 
 	public void sortListValues(String value) {
      String listName = value.trim();
-		ArrayList<String> itemList_Vegetable = new ArrayList<>(Arrays.asList("Cabbage", "Carrot", "Potato", "Tomato"));
 		try {
 			if (opj.findElement(NAVIGATION_DRAWER, LocatorType.XPATH)) {
 				System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>>");
@@ -138,20 +137,8 @@ public class ShoppingList_Helper extends OIShopping_Constants{
 				opj.Click(SETTINGS_MENU,LocatorType.XPATH);
 				opj.Click(SORT_ORDER, LocatorType.XPATH);
 				opj.Click(ALPHABATICAL_ORDER, LocatorType.XPATH);
-				ArrayList<String> iTemValuesDisplayed = opj.getTextFromAttributes(ITEM_LIST,
-						AttributeValue.TEXT.toString());
-				Boolean isMatching = StringListMatch(itemList_Vegetable, iTemValuesDisplayed);
-				if (isMatching) {
-					System.out.println(
-							"<<<<<<<<<<<<<<<<<<<<Values displayed in the Itemlist is not sorted in proper order ,"
-									+ " Actual Value Displayed" + getItemsFromArrayList(iTemValuesDisplayed)
-									+ "Sorted Items" + getItemsFromArrayList(itemList_Vegetable));
-				} else {
-					System.out
-							.println("<<<<<<<<<<<<<<<<<<<<Values displayed in the Itemlist is Sorted in proper order , "
-									+ "Actual Value Displayed" + getItemsFromArrayList(iTemValuesDisplayed)
-									+ "Sorted Items" + getItemsFromArrayList(itemList_Vegetable));
-				}
+				driver.navigate().back();
+				
 			} else {
 				System.out.println("<<<<<<<<<<<<<<<<<<<Navigation Drawer is not Displayed>>>>>>>>>>>>");
 			}
@@ -164,6 +151,25 @@ public class ShoppingList_Helper extends OIShopping_Constants{
 
 	}
 
+	public void sortValidationOfListItems(){
+		
+		ArrayList<String> itemList_Vegetable = new ArrayList<>(Arrays.asList("Cabbage", "Carrot", "Potato", "Tomato"));
+		ArrayList<String> iTemValuesDisplayed = opj.getTextFromAttributes(ITEM_LIST,
+				AttributeValue.TEXT.toString());
+		Boolean isMatching = StringListMatch(itemList_Vegetable, iTemValuesDisplayed);
+		if (isMatching) {
+			System.out.println(
+					"<<<<<<<<<<<<<<<<<<<<Values displayed in the Itemlist is  sorted in proper order ,"
+							+ " Actual Value Displayed" + getItemsFromArrayList(iTemValuesDisplayed)
+							+ "Sorted Items" + getItemsFromArrayList(itemList_Vegetable));
+		} else {
+			System.out
+					.println("<<<<<<<<<<<<<<<<<<<<Values displayed in the Itemlist is not sorted in proper order , "
+							+ "Actual Value Displayed" + getItemsFromArrayList(iTemValuesDisplayed)
+							+ "Sorted Items" + getItemsFromArrayList(itemList_Vegetable));
+		}
+	}
+	
 	
 	public String getItemsFromArrayList(ArrayList<String> value) {
 		String result="";
