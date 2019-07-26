@@ -24,6 +24,8 @@ public class OIShopping_Constants {
 	// Settings Menu
 	public static final String SETTINGS_MENU = "//android.widget.imageView[text='More options']";
 	public static final String DELETE_LIST = "//android.widget.textView[@text='Delete list']";
+	public static final String SORT_ORDER="//*[@text='Sort Order']";
+	public static final String ALPHABATICAL_ORDER="//*[@text='alphabatical']";
 	public static final String ALRERT_POP_UP_MESSAGE = "//android.widget.textView[@text='Do you really want to delete this shopping list?']";
 	
 	// Device config file

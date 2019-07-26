@@ -134,8 +134,10 @@ public class ShoppingList_Helper extends OIShopping_Constants{
 				List<MobileElement> elements = opj.findElements(ITEM_LIST);
 				elements.size();
 				System.out.println(
-						"<<<<<<<<<<<<<<User is displayed with : " + element.getSize() + "Options in iTem List");
-
+						"<<<<<<<<<<<<<<User is displayed with : " + element.getSize() + "Options in iTem List");		
+				opj.Click(SETTINGS_MENU,LocatorType.XPATH);
+				opj.Click(SORT_ORDER, LocatorType.XPATH);
+				opj.Click(ALPHABATICAL_ORDER, LocatorType.XPATH);
 				ArrayList<String> iTemValuesDisplayed = opj.getTextFromAttributes(ITEM_LIST,
 						AttributeValue.TEXT.toString());
 				Boolean isMatching = StringListMatch(itemList_Vegetable, iTemValuesDisplayed);
