@@ -101,10 +101,10 @@ public class ShoppingList_Helper extends OIShopping_Constants{
 				opj.Click(CHECKBOX_ITEMLIST, LocatorType.XPATH);
 				if (opj.findElement(SETTINGS_MENU, LocatorType.ID)) {
 					opj.Click(SETTINGS_MENU, LocatorType.ID);
-					opj.findElement(DELETE_LIST, LocatorType.TEXT);
-					if (opj.findElement(DELETE_LIST, LocatorType.TEXT)) {
+					opj.findElement(DELETE_LIST, LocatorType.XPATH);
+					if (opj.findElement(DELETE_LIST, LocatorType.XPATH)) {
 						System.out.println("<<<<<<<<<<<<<Alert Pop-up is displayed with Cancel and OK Button");
-						opj.Click(OKBUTTON_TXT, LocatorType.TEXT);
+						opj.Click(OKBUTTON_TXT, LocatorType.XPATH);
 						System.out.println("<<<<<<<<<<<<<Item Deleted from the List>>>>>>>>>>");
 					} else {
 						System.out.println("<<<<<<<<<<<<<Alert Pop-up is not displayed to delete the item");
@@ -123,9 +123,9 @@ public class ShoppingList_Helper extends OIShopping_Constants{
 
 		ArrayList<String> itemList_Vegetable = new ArrayList<>(Arrays.asList("Cabbage", "Carrot", "Potato", "Tomato"));
 		try {
-			if (opj.findElement(NAVIGATION_DRAWER, LocatorType.TEXT)) {
+			if (opj.findElement(NAVIGATION_DRAWER, LocatorType.XPATH)) {
 				System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>>");
-				opj.Click(NAVIGATION_DRAWER, LocatorType.TEXT);
+				opj.Click(NAVIGATION_DRAWER, LocatorType.XPATH);
 				if (opj.findElement(listName, LocatorType.XPATHGEN)) {
 					System.out.println("<<<<<<<<<<<Clicked On List " + listName);
 				} else {

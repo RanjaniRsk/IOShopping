@@ -44,8 +44,6 @@ public class Operations_Android {
 				element = androidDriver.findElement(By.name(XPathString));
 			case XPATH:
 				element = androidDriver.findElement(By.xpath(XPathString));
-			case TEXT:
-				element = androidDriver.findElement(By.id(XPathString));
 			case XPATHGEN:
 				element = androidDriver
 						.findElement(By.xpath("//android.widget.TextView" + "[" + "@text=" + XPathString + "]"));
