@@ -17,10 +17,10 @@ public class OIShoppingSteps  {
  	
     	helper.createNewList(arg);   	 
     }
-    @And("^Add items \"([^\"]*)\"$")		
-    public void addItemsToList(String arg) throws Throwable {
+    @And("^Add items \"([^\"]*)\" to list \"([^\"]*)\" $")		
+    public void addItemsToList(String items, String list) throws Throwable {
         
-    	helper.addItemsToList(arg);
+    	helper.addItemsToList(items,list);
     }
     
     @When("^Delete an Item from \"([^\"]*)\"$")

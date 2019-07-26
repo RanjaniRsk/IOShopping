@@ -21,7 +21,7 @@ public class ShoppingList_Helper extends OIShopping_Constants{
 	MobileElement element = new AndroidElement();
 	
 	public void createNewList(String value) {
-		String listName = getlistName(value);
+		String listName =value.trim();
 		try {
 			if (opj.findElement(NAVIGATION_DRAWER, LocatorType.XPATH)) {
 				System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>");
@@ -51,22 +51,22 @@ public class ShoppingList_Helper extends OIShopping_Constants{
 	}
 	
 
-	public void addItemsToList(String arg) {
+	public void addItemsToList(String arg, String list) {
 		ArrayList<String> listItems = getItemslistName(arg);
-		String listName = listItems.get(0);
+		
 		try {
 			if (opj.findElement(NAVIGATION_DRAWER, LocatorType.XPATH)) {
 				System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>>");
 				opj.Click(NAVIGATION_DRAWER, LocatorType.XPATH);
-				if (opj.findElement(listName, LocatorType.XPATHGEN)) {
-					opj.Click(listName, LocatorType.XPATHGEN);
-					System.out.println("<<<<<<<<<<<Clicked On List " + listName);
+				if (opj.findElement(list, LocatorType.XPATHGEN)) {
+					opj.Click(list, LocatorType.XPATHGEN);
+					System.out.println("<<<<<<<<<<<Clicked On List " + list);
 				} else {
 					System.out.println("<<<<<<<<<<<<New List Option is missing in Menu>>>>>>>>>>");
 				}
-				for (String list : listItems) {
+				for (String value : listItems) {
 					if (opj.findElement(INPUTTEXT_RID, LocatorType.ID)) {
-						opj.findElement(INPUTTEXT_RID).sendKeys(list);
+						opj.findElement(INPUTTEXT_RID).sendKeys(value);
 						opj.Click(ADD_BTN, LocatorType.ID);
 						opj.hideKeyboard();
 					}
@@ -82,8 +82,8 @@ public class ShoppingList_Helper extends OIShopping_Constants{
 	}
 
 	public void deleteItemsFromList(String value) {
-		String listName = getlistName(value);
-		try {
+		String listName =value.trim();
+				try {
 			if (opj.findElement(NAVIGATION_DRAWER, LocatorType.XPATH)) {
 				System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>>");
 				opj.Click(NAVIGATION_DRAWER, LocatorType.XPATH);
@@ -119,8 +119,8 @@ public class ShoppingList_Helper extends OIShopping_Constants{
 
 	}
 
-	public void sortListValues(String listName) {
-
+	public void sortListValues(String value) {
+     String listName = value.trim();
 		ArrayList<String> itemList_Vegetable = new ArrayList<>(Arrays.asList("Cabbage", "Carrot", "Potato", "Tomato"));
 		try {
 			if (opj.findElement(NAVIGATION_DRAWER, LocatorType.XPATH)) {
@@ -226,22 +226,15 @@ public class ShoppingList_Helper extends OIShopping_Constants{
 		return value;
 	}
 	
-	public String getlistName(String value) {
-		String[] val = value.split("list",2);
-		value= val[1].trim();				
-		return value;		
-	}
 	
 public ArrayList<String> getItemslistName(String value) {
 		
 	    ArrayList<String> list = new ArrayList<>();	
-		String[] listname =	value.split("to List", 2);
+		String[] listname =	value.split(",",3);
+		list.add(listname[0].trim());
 		list.add(listname[1].trim());
-		String[] sample = listname[0].split("items", 2);
-		String[] itemList =sample[1].split(",", 3);
-		list.add(itemList[0].trim());
-		list.add(itemList[1].trim());
-		list.add(itemList[2].trim());		
+		list.add(listname[2].trim());
+		
 		return list;
 		
 	}
