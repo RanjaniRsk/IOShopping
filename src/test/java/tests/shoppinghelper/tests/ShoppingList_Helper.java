@@ -12,7 +12,7 @@ import tests.shoppinghelper.tests.OIShopping_Constants.AttributeValue;
 import tests.shoppinghelper.tests.OIShopping_Constants.LocatorType;
 import tests.shoppinghelper.tests.Operations_Android;
 
-public class ShoppingList_Helper {
+public class ShoppingList_Helper extends OIShopping_Constants{
 
 	ArrayList<String> listOptions1 = new ArrayList<String>();
 	public static AndroidDriver<MobileElement> driver;
@@ -23,18 +23,18 @@ public class ShoppingList_Helper {
 	public void createNewList(String value) {
 		String listName = getlistName(value);
 		try {
-			if (opj.findElement(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH)) {
+			if (opj.findElement(NAVIGATION_DRAWER, LocatorType.XPATH)) {
 				System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>");
-				opj.Click(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH);
-				if (opj.findElement(OIShopping_Constants.NEW_LIST_RID, LocatorType.ID)) {
-					opj.Click(OIShopping_Constants.NEW_LIST_RID, LocatorType.ID);
+				opj.Click(NAVIGATION_DRAWER, LocatorType.XPATH);
+				if (opj.findElement(NEW_LIST_RID, LocatorType.ID)) {
+					opj.Click(NEW_LIST_RID, LocatorType.ID);
 					System.out.println("<<<<<<<<<<<Clicked On New List Option>>>>>>>>>>>>>>>>>");
 
-					if (opj.findElement(OIShopping_Constants.ALERT_TITLE_RID, LocatorType.ID)) {
-						element = opj.findElement(OIShopping_Constants.INPUTTEXT_RID);
+					if (opj.findElement(ALERT_TITLE_RID, LocatorType.ID)) {
+						element = opj.findElement(INPUTTEXT_RID);
 						element.clear();
 						element.sendKeys(listName);
-						opj.Click(OIShopping_Constants.OKBUTTON_TXT, LocatorType.XPATH);
+						opj.Click(OKBUTTON_TXT, LocatorType.XPATH);
 						System.out.println("<<<<<<<<<<<<<List Name Created " + listName.toString());
 					}
 				} else {
@@ -55,9 +55,9 @@ public class ShoppingList_Helper {
 		ArrayList<String> listItems = getItemslistName(arg);
 		String listName = listItems.get(0);
 		try {
-			if (opj.findElement(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH)) {
+			if (opj.findElement(NAVIGATION_DRAWER, LocatorType.XPATH)) {
 				System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>>");
-				opj.Click(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH);
+				opj.Click(NAVIGATION_DRAWER, LocatorType.XPATH);
 				if (opj.findElement(listName, LocatorType.XPATHGEN)) {
 					opj.Click(listName, LocatorType.XPATHGEN);
 					System.out.println("<<<<<<<<<<<Clicked On List " + listName);
@@ -65,9 +65,9 @@ public class ShoppingList_Helper {
 					System.out.println("<<<<<<<<<<<<New List Option is missing in Menu>>>>>>>>>>");
 				}
 				for (String list : listItems) {
-					if (opj.findElement(OIShopping_Constants.INPUTTEXT_RID, LocatorType.ID)) {
-						opj.findElement(OIShopping_Constants.INPUTTEXT_RID).sendKeys(list);
-						opj.Click(OIShopping_Constants.ADD_BTN, LocatorType.ID);
+					if (opj.findElement(INPUTTEXT_RID, LocatorType.ID)) {
+						opj.findElement(INPUTTEXT_RID).sendKeys(list);
+						opj.Click(ADD_BTN, LocatorType.ID);
 						opj.hideKeyboard();
 					}
 				}
@@ -84,27 +84,27 @@ public class ShoppingList_Helper {
 	public void deleteItemsFromList(String value) {
 		String listName = getlistName(value);
 		try {
-			if (opj.findElement(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH)) {
+			if (opj.findElement(NAVIGATION_DRAWER, LocatorType.XPATH)) {
 				System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>>");
-				opj.Click(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.XPATH);
+				opj.Click(NAVIGATION_DRAWER, LocatorType.XPATH);
 				if (opj.findElement(listName, LocatorType.XPATHGEN)) {
 					opj.Click(listName, LocatorType.XPATHGEN);
 					System.out.println("<<<<<<<<<<<Clicked On List " + listName);
 				} else {
 					System.out.println("<<<<<<<<<<<<Given " + listName + "is missing in Menu");
 				}
-				List<MobileElement> elements = opj.findElements(OIShopping_Constants.ITEM_LIST);
+				List<MobileElement> elements = opj.findElements(ITEM_LIST);
 				elements.size();
 				System.out.println(
 						"<<<<<<<<<<<<<<User is displayed with : " + element.getSize() + "Options in iTem List");
 
-				opj.Click(OIShopping_Constants.CHECKBOX_ITEMLIST, LocatorType.XPATH);
-				if (opj.findElement(OIShopping_Constants.SETTINGS_MENU, LocatorType.ID)) {
-					opj.Click(OIShopping_Constants.SETTINGS_MENU, LocatorType.ID);
-					opj.findElement(OIShopping_Constants.DELETE_LIST, LocatorType.TEXT);
-					if (opj.findElement(OIShopping_Constants.DELETE_LIST, LocatorType.TEXT)) {
+				opj.Click(CHECKBOX_ITEMLIST, LocatorType.XPATH);
+				if (opj.findElement(SETTINGS_MENU, LocatorType.ID)) {
+					opj.Click(SETTINGS_MENU, LocatorType.ID);
+					opj.findElement(DELETE_LIST, LocatorType.TEXT);
+					if (opj.findElement(DELETE_LIST, LocatorType.TEXT)) {
 						System.out.println("<<<<<<<<<<<<<Alert Pop-up is displayed with Cancel and OK Button");
-						opj.Click(OIShopping_Constants.OKBUTTON_TXT, LocatorType.TEXT);
+						opj.Click(OKBUTTON_TXT, LocatorType.TEXT);
 						System.out.println("<<<<<<<<<<<<<Item Deleted from the List>>>>>>>>>>");
 					} else {
 						System.out.println("<<<<<<<<<<<<<Alert Pop-up is not displayed to delete the item");
@@ -123,20 +123,20 @@ public class ShoppingList_Helper {
 
 		ArrayList<String> itemList_Vegetable = new ArrayList<>(Arrays.asList("Cabbage", "Carrot", "Potato", "Tomato"));
 		try {
-			if (opj.findElement(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.TEXT)) {
+			if (opj.findElement(NAVIGATION_DRAWER, LocatorType.TEXT)) {
 				System.out.println("<<<<<<<<<<<<<<<<<<<<<<<Navigation Drawer is Displayed>>>>>>>>>>>");
-				opj.Click(OIShopping_Constants.NAVIGATION_DRAWER, LocatorType.TEXT);
+				opj.Click(NAVIGATION_DRAWER, LocatorType.TEXT);
 				if (opj.findElement(listName, LocatorType.XPATHGEN)) {
 					System.out.println("<<<<<<<<<<<Clicked On List " + listName);
 				} else {
 					System.out.println("<<<<<<<<<<<<Given " + listName + "is missing in Menu");
 				}
-				List<MobileElement> elements = opj.findElements(OIShopping_Constants.ITEM_LIST);
+				List<MobileElement> elements = opj.findElements(ITEM_LIST);
 				elements.size();
 				System.out.println(
 						"<<<<<<<<<<<<<<User is displayed with : " + element.getSize() + "Options in iTem List");
 
-				ArrayList<String> iTemValuesDisplayed = opj.getTextFromAttributes(OIShopping_Constants.ITEM_LIST,
+				ArrayList<String> iTemValuesDisplayed = opj.getTextFromAttributes(ITEM_LIST,
 						AttributeValue.TEXT.toString());
 				Boolean isMatching = StringListMatch(itemList_Vegetable, iTemValuesDisplayed);
 				if (isMatching) {
