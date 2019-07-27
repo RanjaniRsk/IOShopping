@@ -8,3 +8,5 @@ Instruction To Run the project :
  - Install required plug-ins 
  - Right Click on TestNG -> Run As -> TestNG Suite
  - Post Execution reports will be generated under test-output folder.
+
+Refer the document attached for Detailed Description.
