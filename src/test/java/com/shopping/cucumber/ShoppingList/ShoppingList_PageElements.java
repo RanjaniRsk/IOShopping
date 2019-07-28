@@ -42,7 +42,7 @@ public class ShoppingList_PageElements {
 	
 	public static final String SETTINGS_MENU = "//android.widget.ImageView[@content-desc='More options']";
 	public static final String DELETE_LIST ="//android.widget.TextView[@text='Delete list']";
-	
+	public static final String CLEAN_UP_ITEM ="//android.widget.TextView[@content-desc='Clean up list']";
 	
 	
 	//  Settings - Sort

@@ -51,8 +51,6 @@ public class ShoppingList_Helper extends ShoppingList_PageElements {
 		}
 
 	}
-
-	
 	public void createNewList(String value) {
 		driver.findElement(By.xpath(HAMBURGER_MENU)).click();
 		driver.findElement(By.xpath(NEW_LIST)).click();
@@ -62,20 +60,19 @@ public class ShoppingList_Helper extends ShoppingList_PageElements {
 	
 	public void addItemsToList(String listName, List<String> itemValues) {
 		driver.findElement(By.xpath(HAMBURGER_MENU)).click();
+		String list_XPathString = "//*[@text='" + listName + "']";
 		for (String value : itemValues) {
-			driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-			String list_XPathString = "//*[@text='" + listName + "']";
+			driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);			
 			driver.findElement(By.xpath(list_XPathString)).click();
 			driver.findElement(By.id(ADD_ITEM_INPUTTEXT_RID)).clear();
 			driver.findElement(By.id(ADD_ITEM_INPUTTEXT_RID)).sendKeys(value.toString());
 			driver.findElement(By.id(ADD_BTN_RID)).click();
-			;
+			
 		}
 	}
 
 
 	public void deleteItemsFromList(String listName) {
-		TouchAction action = new TouchAction(driver);
 		List<MobileElement> element;
 		MobileElement melement;
 		driver.findElement(By.xpath(HAMBURGER_MENU)).click();
@@ -83,14 +80,10 @@ public class ShoppingList_Helper extends ShoppingList_PageElements {
 		driver.findElement(By.xpath(list_XPathString)).click();
 		element = driver.findElements(By.xpath(TOTAL_ITEM_LIST));
 		System.out.println("<<<<<<<<<<<NoOfItemsDisplayed : " + element.size());
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);		
 		Click(By.xpath(CHECK_BOX_XPATH));
-		System.out.println("xpath clicked");
-		melement = driver.findElement(By.xpath(SELECT_ITEM));
-		action.tap(ElementOption.element((WebElement) melement));
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		Click(By.xpath(SETTINGS_MENU));
-		Click(By.xpath(DELETE_ITEM));
-		Click(By.xpath(DELETE_BUTTON));
+        Click(By.xpath(CLEAN_UP_ITEM));
+		
 	}
 
 	public void sortandValidationOfSortedListItems() {
